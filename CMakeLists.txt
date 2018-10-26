@@ -3,4 +3,4 @@ project(PixelSmasher)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(PixelSmasher main.cpp bmp/bmp.cpp bmp/bmp.h)
+add_executable(PixelSmasher main.cpp bmp/bmp.cpp bmp/bmp.h bmp/Pixel/Pixel.cpp bmp/Pixel/Pixel.h picturefunctions.cpp picturefunctions.h)
