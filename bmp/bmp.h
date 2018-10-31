@@ -27,17 +27,32 @@ private:
     FILE *file;
     unsigned long size = 0;
     unsigned char data[64];
-    // Header
-    unsigned char filetype[3];
-    unsigned long filesize = 0, zeros = 0, offset = 0, hdrsize = 0;
-    unsigned long width = 0, height = 0, compression = 0, imagesize = 0, ppmx = 0, ppmy = 0, noofcolours = 0;
-    uint16_t planes = 0, bpp = 0;
 
+    typedef struct bmp_header {
+        // Hdr
+        unsigned char a, b;
+        unsigned int size;
+        unsigned int zeros;
+        unsigned int offset;
+        // Dib
+        unsigned int hdrsize;
+        unsigned int width;
+        unsigned int height;
+        unsigned int colourplanecount;
+        unsigned int bitsperpixel;
+        unsigned int compression;
+        unsigned int imgsize;
+        unsigned int horizonalppm;
+        unsigned int verticalppm;
+        unsigned int coloursinpallette;
+        unsigned int importantcolours;
+    } bmp_header;
+    bmp_header header;
     // Pixels
     unsigned short *pixeldata;
     Pixel *pixels;
 
-public:
+public :
     Pixel *PixelAt(unsigned long x, unsigned long y);
 
     void writeFile();
